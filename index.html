@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".css">
+    <title>Todo List</title>
+</head>
+<body>
+    <form id="task-form">
+        <label for="task-name">Task Name:</label>
+        <input type="text" id="task-name" required><br>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" required>
+            <option value="high">High</option>
+            <option value="low">Low</option>
+        </select><br>
+
+        <button type="submit">Add Task</button>
+    
+        <index class="css">
+            <style>
+
+                /* Add your CSS styles here */
+    .high-priority {
+        background-color: red;
+    }
+    
+    .low-priority {
+        background-color: green;
+    }
+    
+            </style>
+        </index>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Priority</th>
+                <th>Favourite</th>
+            </tr>
+        </thead>
+        <tbody id="task-table"></tbody>
+    </table>
+
+  
+
+
+   
+</body>
+<script src=".js">
+    document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('task-form');
+    const table = document.getElementById('task-table');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Get input values
+        const taskName = document.getElementById('task-name').value;
+        const priority = document.getElementById('priority').value;
+
+        // Create a new row in the table
+        const row = table.insertRow(-1);
+
+        // Insert cells with data
+        const taskNameCell = row.insertCell(0);
+        taskNameCell.textContent = taskName;
+
+        const priorityCell = row.insertCell(1);
+        priorityCell.textContent = priority;
+
+        // Apply background color based on priority
+        if (priority === 'high') {
+            row.classList.add('high-priority');
+        } else {
+            row.classList.add('low-priority');
+        }
+
+        // Create a Favourite column (do nothing for now)
+        const favouriteCell = row.insertCell(2);
+        favouriteCell.textContent = "Favourite";
+
+        // Clear the form
+        form.reset();
+    });
+});
+
+     </script>
+</html>
